@@ -18,7 +18,8 @@ namespace Attendance_System
         public Form1()
         {
             InitializeComponent();
-            
+
+            this.StartPosition = FormStartPosition.CenterScreen;
 
             // Create a material theme manager and add the form to manage (this)
             MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;

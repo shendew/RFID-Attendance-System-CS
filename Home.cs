@@ -12,6 +12,13 @@ using Newtonsoft.Json;
 using NuGet.Protocol.Plugins;
 using System.Collections.Generic;
 using System.Linq;
+using Attendance_System.Repository;
+using System.Drawing;
+using MaterialSkin.Controls;
+using Attendance_System.Pages;
+using Attendance_System.Models;
+using System.Security.Cryptography;
+
 
 namespace Attendance_System
 {
@@ -28,10 +35,19 @@ namespace Attendance_System
         private List<int> bandList=new List<int> {300, 1200, 2400, 4800, 9600, 14400, 19200, 28800, 38400, 57600, 74880, 115200, 128000, 250000, 500000, 1000000, 2000000};
 
         string logText = "";
+        HomePage hm;
+
         public Home()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
+            //this.TopMost = true;
+            //this.FormBorderStyle = FormBorderStyle.None;
+            //this.WindowState = FormWindowState.Maximized;
             baudList.DataSource = bandList;
+            hm = new HomePage();
+            addUserControl(hm);
+            RFIDlabel.Size = new System.Drawing.Size(120, 25);
             getAvailableCOM_PORTS();
 
             foreach (string port in ports)
@@ -78,7 +94,7 @@ namespace Attendance_System
                 Serial = new SerialPort(selectedPort, int.Parse(selectedBaud), Parity.None, 8, StopBits.One);
                 Serial.Open();
                 Serial.DataReceived += new SerialDataReceivedEventHandler(port_OnReceiveDatazz);
-                connectPortBtn.Text = "Disconnect";
+                connectPortBtn.Text = "Stop";
                 logBox.AppendText("Connected");
                 logBox.AppendText(Environment.NewLine);
 
@@ -109,8 +125,30 @@ namespace Attendance_System
                 Console.Write(indata);
                 logBox.AppendText(indata);
                 logText += indata;
-                RFID.Text = logText.Substring(logText.Length-6);
+                if (logText.Length >= 10)
+                {
+                    string rid = logText.Substring(logText.Length - 10);
+                    RFIDlabel.Text = rid;
+                    var client = new MySQL_Client();
+                    var student = client.GetStudent(RFIDlabel.Text);
+                    if (student != null) 
+                    {
+                        //studentidTextbox.Text = $"{student.StudentId}";
+                        //studentNameTextbox.Text = student.Name;
+                        //studentTeleTextBox.Text = student.Telephone;
+                        hm.FillDetails(student);
+                    }
+                    else
+                    {
+                        hm.resetData();
+                        //MessageBox.Show("This card is not registered yet.", "No Student found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
+
+                }
                 
+
+
             }));
 
             Console.WriteLine();
@@ -123,9 +161,52 @@ namespace Attendance_System
             Serial.Close();
             comboBox2.Enabled = true;
             baudList.Enabled = true;
-            connectPortBtn.Text = "Connect";
+            connectPortBtn.Text = "Read";
+            hm.resetData();
+            RFIDlabel.Text = "-";
+
         }
 
+        private void onLoad(object sender, EventArgs e)
+        {
+            //int w=Screen.PrimaryScreen.Bounds.Width;
+            //int h = Screen.PrimaryScreen.Bounds.Height;
+            //this.Size = new Size(w, h);
+
+        }
+
+        private void addUserControl(UserControl userControl)
+        {
+            userControl.Dock = DockStyle.Fill;
+            panelController.Controls.Clear();
+            panelController.Controls.Add(userControl);
+            userControl.BringToFront();
+        }
+        private void Homebtn_Click(object sender, EventArgs e)
+        {
+            
+            HomePage hm=new HomePage();
+            addUserControl(hm);
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            AddPage ap=new AddPage();
+            addUserControl(ap);
+
+        }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            UpdateStudent us=new UpdateStudent();
+            addUserControl(us);
+        }
+
+        private void guna2Button3_Click(object sender, EventArgs e)
+        {
+            DeletePage dp=new DeletePage();
+            addUserControl(dp);
+        }
     }
 
 }
