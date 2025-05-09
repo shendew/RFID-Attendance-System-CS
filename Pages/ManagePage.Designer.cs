@@ -1,6 +1,6 @@
 ﻿namespace Attendance_System.Pages
 {
-    partial class UpdateStudent
+    partial class ManagePage
     {
         /// <summary> 
         /// Required designer variable.
@@ -34,20 +34,21 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(472, 308);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(494, 65);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(256, 39);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Update Student";
+            this.label1.Size = new System.Drawing.Size(282, 37);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Manage Students";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // UpdateStudent
+            // ManagePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label1);
-            this.Name = "UpdateStudent";
-            this.Size = new System.Drawing.Size(1310, 722);
+            this.Name = "ManagePage";
+            this.Size = new System.Drawing.Size(1326, 706);
             this.ResumeLayout(false);
             this.PerformLayout();
 

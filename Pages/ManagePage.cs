@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Attendance_System.Pages
 {
-    public partial class UpdateStudent : UserControl
+    public partial class ManagePage : UserControl
     {
-        public UpdateStudent()
+        public ManagePage()
         {
             InitializeComponent();
         }

@@ -35,18 +35,26 @@ namespace Attendance_System
         private List<int> bandList=new List<int> {300, 1200, 2400, 4800, 9600, 14400, 19200, 28800, 38400, 57600, 74880, 115200, 128000, 250000, 500000, 1000000, 2000000};
 
         string logText = "";
-        HomePage hm;
+
+        HomePage homePage;
+        AddPage addPage;
+        MarkPage markPage;
+        ManagePage managePage;
+
+        int tabStat = 0;
 
         public Home()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-            //this.TopMost = true;
-            //this.FormBorderStyle = FormBorderStyle.None;
-            //this.WindowState = FormWindowState.Maximized;
             baudList.DataSource = bandList;
-            hm = new HomePage();
-            addUserControl(hm);
+
+            homePage = new HomePage();
+            addPage= new AddPage();
+            markPage=new MarkPage();
+            managePage= new ManagePage();
+
+            addUserControl(homePage);
             RFIDlabel.Size = new System.Drawing.Size(120, 25);
             getAvailableCOM_PORTS();
 
@@ -122,7 +130,6 @@ namespace Attendance_System
 
             this.Invoke(new MethodInvoker(delegate ()
             {
-                Console.Write(indata);
                 logBox.AppendText(indata);
                 logText += indata;
                 if (logText.Length >= 10)
@@ -133,22 +140,38 @@ namespace Attendance_System
                     var student = client.GetStudent(RFIDlabel.Text);
                     if (student != null) 
                     {
-                        //studentidTextbox.Text = $"{student.StudentId}";
-                        //studentNameTextbox.Text = student.Name;
-                        //studentTeleTextBox.Text = student.Telephone;
-                        hm.FillDetails(student);
+                        if (tabStat == 0)
+                        {
+                            markPage.FillDetails(student);
+                            Attendancebtn.BackColor = Color.White;
+                            Attendancebtn.ForeColor = SystemColors.HotTrack;
+                            
+                        } 
+                        else if (tabStat == 1)
+                        {
+                            homePage.FillDetails(student);
+                            ViewStudentbtn.BackColor = Color.White;
+                            ViewStudentbtn.ForeColor = SystemColors.HotTrack;
+                        }
+                        else if (tabStat == 3)
+                        {
+                            
+                        }
                     }
                     else
                     {
-                        hm.resetData();
-                        //MessageBox.Show("This card is not registered yet.", "No Student found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        if (tabStat == 2)
+                        {
+                            addPage.UpdateRFID(rid);
+                            Addbtn.BackColor = Color.White;
+                            Addbtn.ForeColor = SystemColors.HotTrack;
+                        }
+                        else
+                        {
+                            homePage.resetData();
+                        }
                     }
-
-
                 }
-                
-
-
             }));
 
             Console.WriteLine();
@@ -162,18 +185,11 @@ namespace Attendance_System
             comboBox2.Enabled = true;
             baudList.Enabled = true;
             connectPortBtn.Text = "Read";
-            hm.resetData();
-            RFIDlabel.Text = "-";
-
+            homePage.resetData();
+            RFIDlabel.Text = "No RFID Found";
         }
 
-        private void onLoad(object sender, EventArgs e)
-        {
-            //int w=Screen.PrimaryScreen.Bounds.Width;
-            //int h = Screen.PrimaryScreen.Bounds.Height;
-            //this.Size = new Size(w, h);
-
-        }
+        private void onLoad(object sender, EventArgs e){}
 
         private void addUserControl(UserControl userControl)
         {
@@ -182,30 +198,31 @@ namespace Attendance_System
             panelController.Controls.Add(userControl);
             userControl.BringToFront();
         }
+
+
+
+        private void Attendancebtn_Click(object sender, EventArgs e)
+        {
+            addUserControl(markPage);
+            tabStat = 0;
+        }
+
         private void Homebtn_Click(object sender, EventArgs e)
         {
-            
-            HomePage hm=new HomePage();
-            addUserControl(hm);
+            addUserControl(homePage);
+            tabStat = 1;
         }
 
-        private void guna2Button1_Click(object sender, EventArgs e)
+        private void Addbtn_Click(object sender, EventArgs e)
         {
-            AddPage ap=new AddPage();
-            addUserControl(ap);
-
+            addUserControl(addPage);
+            tabStat = 2;
         }
 
-        private void guna2Button2_Click(object sender, EventArgs e)
+        private void Managebtn_Click(object sender, EventArgs e)
         {
-            UpdateStudent us=new UpdateStudent();
-            addUserControl(us);
-        }
-
-        private void guna2Button3_Click(object sender, EventArgs e)
-        {
-            DeletePage dp=new DeletePage();
-            addUserControl(dp);
+            addUserControl(managePage);
+            tabStat = 3;
         }
     }
 

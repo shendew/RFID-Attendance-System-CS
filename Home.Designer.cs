@@ -41,10 +41,10 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.Homebtn = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
+            this.Attendancebtn = new Guna.UI2.WinForms.Guna2Button();
+            this.Managebtn = new Guna.UI2.WinForms.Guna2Button();
+            this.Addbtn = new Guna.UI2.WinForms.Guna2Button();
+            this.ViewStudentbtn = new Guna.UI2.WinForms.Guna2Button();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -97,11 +97,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.RFIDlabel.AutoSize = true;
             this.RFIDlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RFIDlabel.Location = new System.Drawing.Point(90, 18);
+            this.RFIDlabel.Location = new System.Drawing.Point(31, 22);
             this.RFIDlabel.Name = "RFIDlabel";
-            this.RFIDlabel.Size = new System.Drawing.Size(19, 25);
+            this.RFIDlabel.Size = new System.Drawing.Size(147, 25);
             this.RFIDlabel.TabIndex = 3;
-            this.RFIDlabel.Text = "-";
+            this.RFIDlabel.Text = "No RFID Found";
+            this.RFIDlabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // logBox
             // 
@@ -190,83 +191,92 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.guna2Button3);
-            this.panel3.Controls.Add(this.guna2Button2);
-            this.panel3.Controls.Add(this.guna2Button1);
-            this.panel3.Controls.Add(this.Homebtn);
+            this.panel3.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.panel3.Controls.Add(this.Attendancebtn);
+            this.panel3.Controls.Add(this.Managebtn);
+            this.panel3.Controls.Add(this.Addbtn);
+            this.panel3.Controls.Add(this.ViewStudentbtn);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 66);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(267, 623);
             this.panel3.TabIndex = 13;
             // 
-            // Homebtn
+            // Attendancebtn
             // 
-            this.Homebtn.BackColor = System.Drawing.SystemColors.Highlight;
-            this.Homebtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.Homebtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.Homebtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.Homebtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.Homebtn.FillColor = System.Drawing.SystemColors.HotTrack;
-            this.Homebtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Homebtn.ForeColor = System.Drawing.Color.White;
-            this.Homebtn.Location = new System.Drawing.Point(3, 44);
-            this.Homebtn.Name = "Homebtn";
-            this.Homebtn.Size = new System.Drawing.Size(261, 45);
-            this.Homebtn.TabIndex = 0;
-            this.Homebtn.Text = "Home";
-            this.Homebtn.Click += new System.EventHandler(this.Homebtn_Click);
+            this.Attendancebtn.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Attendancebtn.CustomBorderColor = System.Drawing.Color.White;
+            this.Attendancebtn.CustomBorderThickness = new System.Windows.Forms.Padding(1);
+            this.Attendancebtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.Attendancebtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.Attendancebtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.Attendancebtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.Attendancebtn.FillColor = System.Drawing.SystemColors.HotTrack;
+            this.Attendancebtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Attendancebtn.ForeColor = System.Drawing.Color.White;
+            this.Attendancebtn.Location = new System.Drawing.Point(3, 31);
+            this.Attendancebtn.Name = "Attendancebtn";
+            this.Attendancebtn.Size = new System.Drawing.Size(261, 45);
+            this.Attendancebtn.TabIndex = 4;
+            this.Attendancebtn.Text = "Mark Attendance";
+            this.Attendancebtn.Click += new System.EventHandler(this.Attendancebtn_Click);
             // 
-            // guna2Button1
+            // Managebtn
             // 
-            this.guna2Button1.BackColor = System.Drawing.SystemColors.Highlight;
-            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button1.FillColor = System.Drawing.SystemColors.HotTrack;
-            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button1.ForeColor = System.Drawing.Color.White;
-            this.guna2Button1.Location = new System.Drawing.Point(3, 136);
-            this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.Size = new System.Drawing.Size(261, 45);
-            this.guna2Button1.TabIndex = 1;
-            this.guna2Button1.Text = "Add Student";
-            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
+            this.Managebtn.BackColor = System.Drawing.SystemColors.Highlight;
+            this.Managebtn.CustomBorderColor = System.Drawing.Color.White;
+            this.Managebtn.CustomBorderThickness = new System.Windows.Forms.Padding(1);
+            this.Managebtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.Managebtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.Managebtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.Managebtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.Managebtn.FillColor = System.Drawing.SystemColors.HotTrack;
+            this.Managebtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Managebtn.ForeColor = System.Drawing.Color.White;
+            this.Managebtn.Location = new System.Drawing.Point(3, 298);
+            this.Managebtn.Name = "Managebtn";
+            this.Managebtn.Size = new System.Drawing.Size(261, 45);
+            this.Managebtn.TabIndex = 2;
+            this.Managebtn.Text = "Manage Students";
+            this.Managebtn.Click += new System.EventHandler(this.Managebtn_Click);
             // 
-            // guna2Button2
+            // Addbtn
             // 
-            this.guna2Button2.BackColor = System.Drawing.SystemColors.Highlight;
-            this.guna2Button2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button2.FillColor = System.Drawing.SystemColors.HotTrack;
-            this.guna2Button2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button2.ForeColor = System.Drawing.Color.White;
-            this.guna2Button2.Location = new System.Drawing.Point(3, 224);
-            this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.Size = new System.Drawing.Size(261, 45);
-            this.guna2Button2.TabIndex = 2;
-            this.guna2Button2.Text = "Update Student";
-            this.guna2Button2.Click += new System.EventHandler(this.guna2Button2_Click);
+            this.Addbtn.BackColor = System.Drawing.SystemColors.Highlight;
+            this.Addbtn.CustomBorderColor = System.Drawing.Color.White;
+            this.Addbtn.CustomBorderThickness = new System.Windows.Forms.Padding(1);
+            this.Addbtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.Addbtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.Addbtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.Addbtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.Addbtn.FillColor = System.Drawing.SystemColors.HotTrack;
+            this.Addbtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Addbtn.ForeColor = System.Drawing.Color.White;
+            this.Addbtn.Location = new System.Drawing.Point(3, 210);
+            this.Addbtn.Name = "Addbtn";
+            this.Addbtn.Size = new System.Drawing.Size(261, 45);
+            this.Addbtn.TabIndex = 1;
+            this.Addbtn.Text = "Add Student";
+            this.Addbtn.Click += new System.EventHandler(this.Addbtn_Click);
             // 
-            // guna2Button3
+            // ViewStudentbtn
             // 
-            this.guna2Button3.BackColor = System.Drawing.SystemColors.Highlight;
-            this.guna2Button3.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button3.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button3.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button3.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button3.FillColor = System.Drawing.SystemColors.HotTrack;
-            this.guna2Button3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button3.ForeColor = System.Drawing.Color.White;
-            this.guna2Button3.Location = new System.Drawing.Point(3, 311);
-            this.guna2Button3.Name = "guna2Button3";
-            this.guna2Button3.Size = new System.Drawing.Size(261, 45);
-            this.guna2Button3.TabIndex = 3;
-            this.guna2Button3.Text = "Delete Student";
-            this.guna2Button3.Click += new System.EventHandler(this.guna2Button3_Click);
+            this.ViewStudentbtn.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ViewStudentbtn.CustomBorderColor = System.Drawing.Color.White;
+            this.ViewStudentbtn.CustomBorderThickness = new System.Windows.Forms.Padding(1);
+            this.ViewStudentbtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.ViewStudentbtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.ViewStudentbtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.ViewStudentbtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.ViewStudentbtn.FillColor = System.Drawing.SystemColors.HotTrack;
+            this.ViewStudentbtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ViewStudentbtn.ForeColor = System.Drawing.Color.White;
+            this.ViewStudentbtn.Location = new System.Drawing.Point(3, 118);
+            this.ViewStudentbtn.Name = "ViewStudentbtn";
+            this.ViewStudentbtn.Size = new System.Drawing.Size(261, 45);
+            this.ViewStudentbtn.TabIndex = 0;
+            this.ViewStudentbtn.Text = "View Student";
+            this.ViewStudentbtn.Click += new System.EventHandler(this.Homebtn_Click);
             // 
             // Home
             // 
@@ -314,9 +324,9 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;
-        private Guna.UI2.WinForms.Guna2Button Homebtn;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
-        private Guna.UI2.WinForms.Guna2Button guna2Button3;
-        private Guna.UI2.WinForms.Guna2Button guna2Button2;
+        private Guna.UI2.WinForms.Guna2Button ViewStudentbtn;
+        private Guna.UI2.WinForms.Guna2Button Addbtn;
+        private Guna.UI2.WinForms.Guna2Button Managebtn;
+        private Guna.UI2.WinForms.Guna2Button Attendancebtn;
     }
 }

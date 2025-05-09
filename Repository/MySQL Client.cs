@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Attendance_System.Repository
 {
@@ -97,7 +98,7 @@ namespace Attendance_System.Repository
         }
 
 
-        public void CreateStudent(Student student)
+        public Boolean CreateStudent(Student student)
         {
             try
             {
@@ -118,10 +119,142 @@ namespace Attendance_System.Repository
                         command.ExecuteNonQuery();
 
                     }
+                    return true;
                 }
             }catch (Exception ex)
             {
                 Console.WriteLine("Exception: "+ex.Message);
+                return false;
+            }
+        }
+
+
+        public Attendance GetAttendance(String rfid)
+        {
+            Attendance attendance = new Attendance();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+                    DateTime currentDate = DateTime.Now;
+
+                    int year = currentDate.Year;
+                    int month = currentDate.Month;
+                    int day = currentDate.Day;
+                    //string sql = "SELECT * FROM Attendance where RFID=@rfid AND Year=@year AND Month=@month AND Day=@day";
+                    string sql = "SELECT * FROM Attendance where RFID=@rfid";
+
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+
+                        command.Parameters.AddWithValue("@rfid", rfid);
+                        //command.Parameters.AddWithValue("@year",year.ToString());
+                        //command.Parameters.AddWithValue("@month", month.ToString());
+                        //command.Parameters.AddWithValue("@day", day.ToString());
+
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            
+                                if (reader.Read())
+                                {
+                                    attendance.RFID = reader.GetString(0);
+                                    attendance.Month = reader.GetString(1);
+                                    attendance.Year = reader.GetString(2);
+                                    attendance.Day = reader.GetString(3);
+                                    attendance.IN_TIME = reader.GetString(4);
+                                    if(reader.IsDBNull(5)) 
+                                    {
+                                        attendance.OUT_TIME = "";
+                                    }
+                                    else
+                                    {
+                                        attendance.OUT_TIME = reader.GetString(5);
+                                    }
+                                    
+                                }
+
+
+                                return attendance;
+                            
+                            
+
+                        }
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: catch null" + ex.Message);
+
+                return null;
+            }
+        }
+
+
+        public Boolean SetAttendance(Attendance attendance)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+                    string sql = "INSERT INTO Attendance " +
+                        "(RFID,Month,Year,Day,IN_TIME) VALUES " +
+                        "(@rfid,@month,@year,@day,@intime);";
+
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        command.Parameters.AddWithValue("@rfid", attendance.RFID);
+                        command.Parameters.AddWithValue("@month", attendance.Month);
+                        command.Parameters.AddWithValue("@year", attendance.Year);
+                        command.Parameters.AddWithValue("@day", attendance.Day);
+                        command.Parameters.AddWithValue("@intime", attendance.IN_TIME);
+                        //command.Parameters.AddWithValue("@outtime", attendance.OUT_TIME);
+
+
+                        command.ExecuteNonQuery();
+                        return true;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex.Message);
+                return false;
+            }
+        }
+
+
+        public Boolean UpdateAttendance(String outtime,String rfid)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+                    string sql = "UPDATE Attendance " +
+                        "SET OUT_TIME = @outtime " +
+                        "WHERE RFID = @rfid;";
+
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        command.Parameters.AddWithValue("@outtime", outtime);
+                        command.Parameters.AddWithValue("@rfid", rfid);                 
+                        command.ExecuteNonQuery();
+
+                    }
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex.Message);
+                return false;
             }
         }
     }

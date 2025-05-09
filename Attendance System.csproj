@@ -174,6 +174,7 @@
     <Compile Include="Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Pages\AddPage.cs">
       <SubType>UserControl</SubType>
@@ -181,23 +182,23 @@
     <Compile Include="Pages\AddPage.Designer.cs">
       <DependentUpon>AddPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pages\DeletePage.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Pages\DeletePage.Designer.cs">
-      <DependentUpon>DeletePage.cs</DependentUpon>
-    </Compile>
     <Compile Include="Pages\HomePage.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Pages\HomePage.Designer.cs">
       <DependentUpon>HomePage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pages\UpdateStudent.cs">
+    <Compile Include="Pages\ManagePage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Pages\UpdateStudent.Designer.cs">
-      <DependentUpon>UpdateStudent.cs</DependentUpon>
+    <Compile Include="Pages\ManagePage.Designer.cs">
+      <DependentUpon>ManagePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MarkPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\MarkPage.Designer.cs">
+      <DependentUpon>MarkPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -211,14 +212,14 @@
     <EmbeddedResource Include="Pages\AddPage.resx">
       <DependentUpon>AddPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\DeletePage.resx">
-      <DependentUpon>DeletePage.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Pages\HomePage.resx">
       <DependentUpon>HomePage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\UpdateStudent.resx">
-      <DependentUpon>UpdateStudent.cs</DependentUpon>
+    <EmbeddedResource Include="Pages\ManagePage.resx">
+      <DependentUpon>ManagePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\MarkPage.resx">
+      <DependentUpon>MarkPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
