@@ -1,6 +1,7 @@
 ﻿using Attendance_System.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace Attendance_System.Repository
     {
         private readonly string _connectionString= "Data Source=DEWSPC\\SQLEXPRESS;Initial Catalog=at_db;Integrated Security=True;TrustServerCertificate=True";
 
-        public List<Student> GetStudents()
+        public DataSet GetStudents()
         {
             var students = new List<Student>();
 
@@ -26,19 +27,25 @@ namespace Attendance_System.Repository
                     string sql = "SELECT * FROM STUDENTS ORDER BY StudentId DESC";
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                Student student = new Student();
-                                student.StudentId = reader.GetInt32(0);
-                                student.Name = reader.GetString(1);
-                                student.Telephone = reader.GetString(2);
-                                student.Rfid = reader.GetString(3);
 
-                                students.Add(student);
-                            }
-                        }
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        return ds;
+
+                        //using (SqlDataReader reader = command.ExecuteReader())
+                        //{
+                        //    while (reader.Read())
+                        //    {
+                        //        Student student = new Student();
+                        //        student.StudentId = reader.GetInt32(0);
+                        //        student.Name = reader.GetString(1);
+                        //        student.Telephone = reader.GetString(2);
+                        //        student.Rfid = reader.GetString(3);
+
+                        //        students.Add(student);
+                        //    }
+                        //}
                     }
                 }
             }
@@ -46,10 +53,86 @@ namespace Attendance_System.Repository
             { 
                 Console.WriteLine("Exception: "+ex.Message);
             }
-
-
-            return students;
+            return null;
         }
+
+        public DataSet SearchStudent(string std_ID)
+        {
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+
+                    string sql = "SELECT * FROM Students where StudentID=@rfid";
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        command.Parameters.AddWithValue("@rfid", std_ID);
+
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        return ds;
+
+                        //using (SqlDataReader reader = command.ExecuteReader())
+                        //{
+                        //    while (reader.Read())
+                        //    {
+                        //        Student student = new Student();
+                        //        student.StudentId = reader.GetInt32(0);
+                        //        student.Name = reader.GetString(1);
+                        //        student.Telephone = reader.GetString(2);
+                        //        student.Rfid = reader.GetString(3);
+
+                        //        //student.StudentId = 1;
+                        //        //student.Name = "Shehara";
+                        //        //student.Telephone = "0764247796";
+                        //        //student.Rfid = "tost";
+
+
+                        //        return student;
+                        //    }
+                        //}
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex.Message);
+                return null;
+            }
+        }
+
+
+        public Boolean DeleteStudent(string rfid)
+        {
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+
+                    string sql = "DELETE FROM Students WHERE Rfid = @rfid";
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        command.Parameters.AddWithValue("@rfid", rfid);
+                        command.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex.Message);
+
+                return false;
+            }
+
+
+        }
+
 
         public Student GetStudent(string rfid)
         {
@@ -143,16 +226,16 @@ namespace Attendance_System.Repository
                     int year = currentDate.Year;
                     int month = currentDate.Month;
                     int day = currentDate.Day;
-                    //string sql = "SELECT * FROM Attendance where RFID=@rfid AND Year=@year AND Month=@month AND Day=@day";
-                    string sql = "SELECT * FROM Attendance where RFID=@rfid";
+                    string sql = "SELECT * FROM Attendance where RFID=@rfid AND Year=@year AND Month=@month AND Day=@day";
+                    //string sql = "SELECT * FROM Attendance where RFID=@rfid";
 
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
 
                         command.Parameters.AddWithValue("@rfid", rfid);
-                        //command.Parameters.AddWithValue("@year",year.ToString());
-                        //command.Parameters.AddWithValue("@month", month.ToString());
-                        //command.Parameters.AddWithValue("@day", day.ToString());
+                        command.Parameters.AddWithValue("@year",year.ToString());
+                        command.Parameters.AddWithValue("@month", month.ToString());
+                        command.Parameters.AddWithValue("@day", day.ToString());
 
 
                         using (SqlDataReader reader = command.ExecuteReader())

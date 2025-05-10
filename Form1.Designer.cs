@@ -124,7 +124,7 @@
             this.userPasswordTextBox.Size = new System.Drawing.Size(208, 23);
             this.userPasswordTextBox.TabIndex = 5;
             this.userPasswordTextBox.TabStop = false;
-            this.userPasswordTextBox.UseSystemPasswordChar = false;
+            this.userPasswordTextBox.UseSystemPasswordChar = true;
             // 
             // Form1
             // 

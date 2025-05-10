@@ -32,7 +32,8 @@ namespace Attendance_System
         private TcpListener tcpListener;
 
 
-        private List<int> bandList=new List<int> {300, 1200, 2400, 4800, 9600, 14400, 19200, 28800, 38400, 57600, 74880, 115200, 128000, 250000, 500000, 1000000, 2000000};
+        //private List<int> bandList=new List<int> {300, 1200, 2400, 4800, 9600, 14400, 19200, 28800, 38400, 57600, 74880, 115200, 128000, 250000, 500000, 1000000, 2000000};
+        private List<int> bandList = new List<int> { 9600};
 
         string logText = "";
 
@@ -143,15 +144,13 @@ namespace Attendance_System
                         if (tabStat == 0)
                         {
                             markPage.FillDetails(student);
-                            Attendancebtn.BackColor = Color.White;
-                            Attendancebtn.ForeColor = SystemColors.HotTrack;
+                            
                             
                         } 
                         else if (tabStat == 1)
                         {
                             homePage.FillDetails(student);
-                            ViewStudentbtn.BackColor = Color.White;
-                            ViewStudentbtn.ForeColor = SystemColors.HotTrack;
+                            
                         }
                         else if (tabStat == 3)
                         {
@@ -162,9 +161,8 @@ namespace Attendance_System
                     {
                         if (tabStat == 2)
                         {
-                            addPage.UpdateRFID(rid);
-                            Addbtn.BackColor = Color.White;
-                            Addbtn.ForeColor = SystemColors.HotTrack;
+                            addPage.UpdateRFID(RFIDlabel.Text);
+                            
                         }
                         else
                         {
