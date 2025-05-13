@@ -42,7 +42,7 @@ namespace Attendance_System
         MarkPage markPage;
         ManagePage managePage;
 
-        int tabStat = 0;
+        int tabStat = 1;
 
         public Home()
         {

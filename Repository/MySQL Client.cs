@@ -74,26 +74,6 @@ namespace Attendance_System.Repository
                         DataSet ds = new DataSet();
                         adapter.Fill(ds);
                         return ds;
-
-                        //using (SqlDataReader reader = command.ExecuteReader())
-                        //{
-                        //    while (reader.Read())
-                        //    {
-                        //        Student student = new Student();
-                        //        student.StudentId = reader.GetInt32(0);
-                        //        student.Name = reader.GetString(1);
-                        //        student.Telephone = reader.GetString(2);
-                        //        student.Rfid = reader.GetString(3);
-
-                        //        //student.StudentId = 1;
-                        //        //student.Name = "Shehara";
-                        //        //student.Telephone = "0764247796";
-                        //        //student.Rfid = "tost";
-
-
-                        //        return student;
-                        //    }
-                        //}
                     }
                 }
             }

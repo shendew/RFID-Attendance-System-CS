@@ -113,5 +113,15 @@ namespace Attendance_System.Pages
                 }
             }
         }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timeLabel.Text = DateTime.Now.ToString("T");
+        }
+
+        private void MarkPage_Load(object sender, EventArgs e)
+        {
+            timer1.Start();
+        }
     }
 }

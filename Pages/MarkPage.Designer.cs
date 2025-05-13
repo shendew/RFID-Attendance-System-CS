@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblName = new System.Windows.Forms.Label();
             this.lblID = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -41,6 +42,10 @@
             this.OUTlbl = new System.Windows.Forms.Label();
             this.INlbl = new System.Windows.Forms.Label();
             this.dateLabel = new System.Windows.Forms.Label();
+            this.timeLabel = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -177,18 +182,54 @@
             // dateLabel
             // 
             this.dateLabel.AutoSize = true;
-            this.dateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateLabel.Location = new System.Drawing.Point(664, 397);
+            this.dateLabel.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.dateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateLabel.Location = new System.Drawing.Point(383, 362);
             this.dateLabel.Name = "dateLabel";
-            this.dateLabel.Size = new System.Drawing.Size(20, 25);
+            this.dateLabel.Size = new System.Drawing.Size(216, 42);
             this.dateLabel.TabIndex = 18;
-            this.dateLabel.Text = "-";
+            this.dateLabel.Text = "12/02/2025";
             this.dateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // timeLabel
+            // 
+            this.timeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.timeLabel.AutoSize = true;
+            this.timeLabel.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.timeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timeLabel.Location = new System.Drawing.Point(745, 362);
+            this.timeLabel.Name = "timeLabel";
+            this.timeLabel.Size = new System.Drawing.Size(236, 42);
+            this.timeLabel.TabIndex = 19;
+            this.timeLabel.Text = "00:00:00 pm";
+            this.timeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.panel3.Location = new System.Drawing.Point(304, 333);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(373, 100);
+            this.panel3.TabIndex = 20;
+            // 
+            // panel4
+            // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel4.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.panel4.Location = new System.Drawing.Point(675, 333);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(373, 100);
+            this.panel4.TabIndex = 21;
             // 
             // MarkPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.timeLabel);
             this.Controls.Add(this.dateLabel);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblName);
@@ -197,8 +238,11 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel4);
             this.Name = "MarkPage";
             this.Size = new System.Drawing.Size(1338, 702);
+            this.Load += new System.EventHandler(this.MarkPage_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -223,5 +267,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label dateLabel;
+        private System.Windows.Forms.Label timeLabel;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
     }
 }
