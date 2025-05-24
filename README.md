@@ -1,7 +1,7 @@
 
 # Smart Attendance System 
 
-This is a mini IoT project that automates student attendance tracking using an ESP32 microcontroller, RFID reader, buzzer, and MYSQL Database. It eliminates the need for manual attendance by detecting student ID cards and storing attendance records.
+This is a mini IoT project that automates student attendance tracking using an Arduino Uno, RFID reader, buzzer, and MYSQL Database. It eliminates the need for manual attendance by detecting student ID cards and storing attendance records.
 
 
 
