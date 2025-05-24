@@ -12,7 +12,7 @@ This is a mini IoT project that automates student attendance tracking using an A
 **Back-end:** MYSQL, SSMS
 
 **Hardware:** 
-- **ESP32** – Main microcontroller for connecting sensors and uploading data to Firebase
+- **Arduino Uno** – Main microcontroller for connecting sensors
 - **RFID Reader (RC522)** – For reading RFID tags (student ID cards)
 - **RFID Tags** – Assigned to each student for identification
 - **Buzzer** – Feedback signal when a tag is scanned
