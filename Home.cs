@@ -209,18 +209,28 @@ namespace Attendance_System
         {
             addUserControl(homePage);
             tabStat = 1;
+            markPage.resetData();
+            homePage.resetData();
+            RFIDlabel.Text = "Scan RFID";
+
         }
 
         private void Addbtn_Click(object sender, EventArgs e)
         {
             addUserControl(addPage);
             tabStat = 2;
+            markPage.resetData();
+            homePage.resetData();
+            RFIDlabel.Text = "Scan RFID";
         }
 
         private void Managebtn_Click(object sender, EventArgs e)
         {
             addUserControl(managePage);
             tabStat = 3;
+            markPage.resetData();
+            homePage.resetData();
+            RFIDlabel.Text = "Scan RFID";
         }
     }
 
